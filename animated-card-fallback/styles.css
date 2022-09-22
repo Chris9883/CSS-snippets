@@ -1,0 +1,138 @@
+/*Foto von Josh Sorenson: https://www.pexels.com/de-de/foto/schwarzer-flachbildschirm-computermonitor-1714208/*/
+/* Tutorial by Kevin Powell https://www.youtube.com/watch?v=5DEq5cWNYt8 */
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*, 
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --clr-neutral-900: hsl(207, 19%, 9%);
+    --clr-neutral-100: hsl(0, 0%, 100%);
+    --clr-accent-400: hsl(142,90%, 61%);
+}
+
+body {
+    background: var(--clr-neutral-900);
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--clr-neutral-100);
+    line-height: 1.6;
+    font-family: sans-serif;
+}
+
+.card {
+    display: flex;
+    align-items: end;
+    height: 400px;
+    background-image: url(background.jpg);
+    background-size: cover;
+    max-width: 35ch;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    transition: transform 500ms ease;
+}
+
+.card-content {
+    --padding: 2rem;
+    padding: var(--padding);
+    background: linear-gradient(
+        hsl(0 0% 0% / 0),
+        hsl(0 0% 0% / 0.7) 30%,
+        hsl(0 0% 0% / 1)
+    );
+    margin: 20px 0;   
+}
+
+@media (hover) {
+    .card-content {
+        transform: translateY(calc((100% - 4rem)));
+        transition: transform 500ms ease;
+    }
+
+    .card:hover, 
+    .card:focus-within {
+        transform: scale(1.02);
+    }
+
+    .card:hover .card-content,
+    .card:focus-within .card-content 
+    {
+        transform: translateY(0);
+        transition-delay: 200ms;
+    }
+
+    .card-title::after {
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 700ms ease;
+    }
+
+    .card:hover .card-title::after, 
+    .card:focus-within .card-title::after{
+    transform: scaleX(1);
+    transition: transform 500ms ease;
+    }
+
+    .card:focus-within .card-content {
+        transition-duration: 0ms;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+        transition-delay: 0ms !important;
+    }
+}
+
+.card-title {
+    position: relative;
+    width: max-content;
+    max-width: 100%;
+}
+
+.card-title::after {
+    position: absolute;
+    content: "";
+    height: 3px;
+    width: calc(100% + var(--padding));
+    left: calc(var(--padding) * -1);
+    bottom: 0;
+    background: var(--clr-accent-400);
+    
+}
+
+.card-body {
+    padding: 20px 0;
+}
+
+.button {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--clr-neutral-900);
+    background-color: var(--clr-accent-400);
+    padding: 0.5em 1.25em;
+    border-radius: 3px;
+}
+
+.button:hover,
+.button:focus {
+    background-color: var(--clr-neutral-100);
+}
