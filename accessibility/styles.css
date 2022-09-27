@@ -1,0 +1,36 @@
+/* default pattern for sr-only class */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+
+/* behaviors for users who turned off animation */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+        transition-delay: 0ms !important;
+    }
+}
+
+
+/* contrast ratio between background and foreground should
+be at least 4.5 --> https://juicystudio.com/services/luminositycontrastratio.php#specify */
+
+/* smooth out jumping by clicking links in navbar */
+* {
+    scroll-behavior: smooth;
+}
